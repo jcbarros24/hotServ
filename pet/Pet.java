@@ -6,6 +6,16 @@ public abstract class Pet {
     private String porte;
     private int idade;
     private double peso;
+    private double tamanho;
+    private String raca;
+
+    public double getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(double tamanho) {
+        this.tamanho = tamanho;
+    }
 
     public String getNome() {
         return nome;
@@ -35,11 +45,29 @@ public abstract class Pet {
         return peso;
     }
 
+    public String getRaca() {
+        return raca;
+    }
+
+    public void setRaca(String raca) {
+        this.raca = raca;
+    }
+
     public void setPeso(Double peso) {
         this.peso = peso;
+        if(peso > 0 && peso <= 10){
+            setPorte("Pequeno");
+        }
+        if(peso > 10 && peso <= 20){
+            setPorte("Médio");
+        }
+        else if(peso > 20){ 
+            setPorte("Grande");
+        }
     }
 
     public abstract String fazerBarulho();
-
+    public abstract String comer();
+    public abstract String brincar();
 
 }
