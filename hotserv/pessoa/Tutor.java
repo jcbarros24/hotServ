@@ -1,4 +1,4 @@
-package pessoa;
+package hotserv.pessoa;
 
 public class Tutor {
     private String nome;

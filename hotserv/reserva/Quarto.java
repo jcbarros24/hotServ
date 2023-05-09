@@ -1,4 +1,4 @@
-package reserva;
+package hotserv.reserva;
 
 public class Quarto {
     

@@ -1,9 +1,10 @@
-package reserva;
+package hotserv.reserva;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import pessoa.Tutor;
-import pet.Pet;
+
+import hotserv.pessoa.Tutor;
+import hotserv.pet.Pet;
 
 public class Reserva {
     

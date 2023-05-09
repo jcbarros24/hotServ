@@ -1,4 +1,4 @@
-package pet;
+package hotserv.pet;
 
 public abstract class Pet { 
 
@@ -14,7 +14,7 @@ public abstract class Pet {
     }
 
     public void setTamanho(double tamanho) {
-        this.tamanho = tamanho;
+        this.tamanho =  tamanho;
     }
 
     public String getNome() {

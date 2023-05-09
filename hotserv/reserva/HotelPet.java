@@ -1,8 +1,8 @@
-package reserva;
+package hotserv.reserva;
 
 import java.util.ArrayList; //Completar várias coisas
 
-import pet.Pet;
+import hotserv.pet.Pet;
 
 import java.time.LocalDateTime;
 import java.time.Duration;
@@ -55,19 +55,7 @@ public class HotelPet {
     }
 
     public void listarQuartosDisponiveis(){ 
-        System.out.println("Quartos tipo Confort disponíveis:");  
-        for (Quarto quarto : getQuartosC()) {
-            if (!quarto.isOcupado()) {
-                System.out.println(quarto.getNumQuarto());
-            }
-        }
-    
-        System.out.println("Quartos tipo Normal disponíveis:");  
-        for (Quarto quarto : getQuartosN()) {
-            if (!quarto.isOcupado()) {
-                System.out.println(quarto.getNumQuarto());
-            }
-        }
+        
     }
     
     public void adicionarQuarto(Quarto quarto){ 
@@ -81,6 +69,7 @@ public class HotelPet {
     }
 
     public void calcularPrecoReserva(){  
+
         
     }
 
