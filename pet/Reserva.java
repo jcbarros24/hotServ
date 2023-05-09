@@ -60,13 +60,27 @@ public class Reserva {
     }
 
     HotelPet hotelPet = new HotelPet();
-    ArrayList<Quarto> quartos = hotelPet.getQuartos();
+    ArrayList<Quarto> quartosC = hotelPet.getQuartosC();
+    ArrayList<Quarto> quartosN = hotelPet.getQuartosN();
 
-    public boolean isFull(){ 
-        if(quartos.size() == 50){ 
+    public boolean isFullquartosN(){ 
+        if(quartosN.size() == 30){ 
             return true;
         }
         return false;
     }
 
+    public boolean isFullquartosC(){ 
+        if(quartosC.size() == 20){ 
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFull(){ 
+        if (isFullquartosC() && isFullquartosN()){ 
+            return true;
+        }
+        return false;
+    }
 }
