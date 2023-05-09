@@ -1,6 +1,6 @@
 package pet;
 
-public class Gato extends Pet {
+public class Gato extends Pet implements InterPet {
 
     public String fazerBarulho() {
         return "Miau";

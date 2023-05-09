@@ -1,6 +1,9 @@
-package pet;
+package reserva;
 
 import java.util.ArrayList; //Completar várias coisas
+
+import pet.Pet;
+
 import java.time.LocalDateTime;
 import java.time.Duration;
 
@@ -10,6 +13,7 @@ public class HotelPet {
     ArrayList<Quarto> quartosC = new ArrayList<Quarto>(null);
     Reserva reserva;
     Quarto quarto;
+    Pet pet;
    
     private int i = -1;
 
@@ -79,9 +83,6 @@ public class HotelPet {
     public void calcularPrecoReserva(){  
         
     }
-    
-    
-    
 
     public ArrayList<Quarto> getQuartosN(){ 
         return quartosN;

@@ -1,7 +1,9 @@
-package pet;
+package reserva;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import pessoa.Tutor;
+import pet.Pet;
 
 public class Reserva {
     
@@ -44,19 +46,19 @@ public class Reserva {
     }
 
     public LocalDateTime getCheckIn() {
-        return checkIn;
+        return checkIn = LocalDateTime.now();
     }
 
     public void setCheckIn(LocalDateTime checkIn) {
-        this.checkIn = checkIn;
+        this.checkIn = LocalDateTime.now();
     }
 
     public LocalDateTime getCheckOut() {
-        return checkOut;
+        return checkOut = LocalDateTime.now();
     }
 
     public void setCheckOut(LocalDateTime checkOut) {
-        this.checkOut = checkOut;
+        this.checkOut = LocalDateTime.now();
     }
 
     HotelPet hotelPet = new HotelPet();

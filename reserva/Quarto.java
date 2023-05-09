@@ -1,4 +1,4 @@
-package pet;
+package reserva;
 
 public class Quarto {
     

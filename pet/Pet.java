@@ -65,9 +65,4 @@ public abstract class Pet {
             setPorte("Grande");
         }
     }
-
-    public abstract String fazerBarulho();
-    public abstract String comer();
-    public abstract String brincar();
-
 }

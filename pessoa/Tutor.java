@@ -1,4 +1,4 @@
-package pet;
+package pessoa;
 
 public class Tutor {
     private String nome;
