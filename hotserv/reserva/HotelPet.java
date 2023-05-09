@@ -4,9 +4,6 @@ import java.util.ArrayList; //Completar várias coisas
 
 import hotserv.pet.Pet;
 
-import java.time.LocalDateTime;
-import java.time.Duration;
-
 public class HotelPet {
     ArrayList<Quarto> quartosN = new ArrayList<Quarto>(null);
     ArrayList<Reserva> reservas = new ArrayList<Reserva>(null);
@@ -55,7 +52,18 @@ public class HotelPet {
     }
 
     public void listarQuartosDisponiveis(){ 
-        
+        if(getQuartoDisponivelC() == null && getQuartoDisponivelN() == null){ 
+            System.out.println("Infelizmente não temos quartos disponíveis");
+        }
+        else if(getQuartoDisponivelC() == null && getQuartoDisponivelN() != null){ 
+            System.out.println("Só possuímos quartos Normais: "+getQuartoDisponivelN());
+        }
+        else if(getQuartoDisponivelC() != null && getQuartoDisponivelN() == null){ 
+            System.out.println("Só possuímos quartos Confort: "+getQuartoDisponivelC());
+        }else { 
+            System.out.println("Possuímos quartos Confort: "+getQuartoDisponivelC() +" E quartos Normais: "+getQuartoDisponivelN());
+        }
+
     }
     
     public void adicionarQuarto(Quarto quarto){ 
