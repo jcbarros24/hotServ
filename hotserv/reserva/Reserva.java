@@ -1,8 +1,6 @@
 package hotserv.reserva;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
+import java.util.UUID;
 import hotserv.pessoa.Tutor;
 import hotserv.pet.Pet;
 
@@ -11,15 +9,17 @@ public class Reserva {
     private Pet pet;
     private Quarto quarto; 
     private Tutor tutor;
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
+    private int tempo;
+    private double preco;
+    private UUID id;
+    HotelPet hotelPet; 
 
-    public Reserva(Pet pet,Quarto quarto,Tutor tutor,LocalDateTime checkIn,LocalDateTime checkOut){
+    public Reserva(Pet pet,Quarto quarto,Tutor tutor,int tempo){
+        this.id = UUID.randomUUID();
         this.pet = pet;
         this.quarto = quarto;
         this.tutor = tutor;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
+        this.tempo = tempo;
     }
 
     public Pet getPet() {
@@ -45,45 +45,29 @@ public class Reserva {
     public void setTutor(Tutor tutor) {
         this.tutor = tutor;
     }
-
-    public LocalDateTime getCheckIn() {
-        return checkIn = LocalDateTime.now();
-    }
-
-    public void setCheckIn(LocalDateTime checkIn) {
-        this.checkIn = LocalDateTime.now();
-    }
-
-    public LocalDateTime getCheckOut() {
-        return checkOut = LocalDateTime.now();
-    }
-
-    public void setCheckOut(LocalDateTime checkOut) {
-        this.checkOut = LocalDateTime.now();
-    }
-
-    HotelPet hotelPet = new HotelPet();
-    ArrayList<Quarto> quartosC = hotelPet.getQuartosC();
-    ArrayList<Quarto> quartosN = hotelPet.getQuartosN();
-
-    public boolean isFullquartosN(){ 
-        if(quartosN.size() == 30){ 
-            return true;
+    
+    public int getTempo() {
+            return tempo;
         }
-        return false;
+
+    public void setTempo(int tempo) {
+            this.tempo = tempo;
+        }
+    
+    public double getPreco() {
+            return preco;
+        }
+
+    public void setPreco(double preco) {
+            this.preco = preco;
+        }
+
+    public UUID getId() {
+        return id;
     }
 
-    public boolean isFullquartosC(){ 
-        if(quartosC.size() == 20){ 
-            return true;
-        }
-        return false;
+    public void setId(UUID id) {
+        this.id = id;
     }
-
-    public boolean isFull(){ 
-        if (isFullquartosC() && isFullquartosN()){ 
-            return true;
-        }
-        return false;
-    }
+    
 }

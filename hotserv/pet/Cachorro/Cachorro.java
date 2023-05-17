@@ -1,4 +1,7 @@
-package hotserv.pet;
+package hotserv.pet.Cachorro;
+
+import hotserv.pet.InterPet;
+import hotserv.pet.Pet;
 
 public class Cachorro extends Pet implements InterPet{
 

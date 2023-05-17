@@ -11,9 +11,8 @@ public class Quarto {
     public Quarto(String tipoQuarto){ 
         this.tipoQuarto = tipoQuarto;
         this.ocupado = false; // inicialmente o quarto está livre
-        if(reserva.isFull() == false){ 
-            numQuarto++;
-        }
+        numQuarto++; 
+      // if(reserva.isFull() == false){ } // adicionar isso no método main.
     }
     
     public void ocuparQuarto(){ 
