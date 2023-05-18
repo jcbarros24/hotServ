@@ -18,6 +18,11 @@ public class Quarto {
     public void ocuparQuarto(){ 
         setOcupado(true);
     }
+    
+    public void desocuparQuarto(){ 
+        setOcupado(false);
+    }
+
     public boolean isOcupado() {
             if (ocupado == true){ 
                 return true;

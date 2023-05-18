@@ -3,16 +3,12 @@ package hotserv.reserva;
 import java.util.ArrayList; //Completar várias coisas
 import java.util.UUID;
 
-import hotserv.pet.Pet;
-
 public class HotelPet {
-    ArrayList<Quarto> quartosN = new ArrayList<Quarto>(null);
-    ArrayList<Reserva> reservas = new ArrayList<Reserva>(null);
-    ArrayList<Quarto> quartosC = new ArrayList<Quarto>(null);
+    ArrayList<Quarto> quartosN = new ArrayList<Quarto>();
+    ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+    ArrayList<Quarto> quartosC = new ArrayList<Quarto>();
     Reserva reserva;
     Quarto quarto;
-    Pet pet;
-    private int i;
 
     public void adicionarReserva(Reserva reserva){ 
         if(isFull() == true){ 
@@ -20,7 +16,7 @@ public class HotelPet {
         }
         else{ 
             reserva.getQuarto().ocuparQuarto();
-            getReservas().add((getReservas().size() - 1), reserva);
+            getReservas().add(reserva);
         }
     }
     
@@ -29,16 +25,32 @@ public class HotelPet {
         for (Reserva reserva : getReservas()){ 
             if(reserva.getId().equals(id)){ 
                 encontrou = true;  
-                Reserva r = reservas.get(i);
-                System.out.println("Pet: "+r.getPet().getNome()+ " Tutor: "+r.getTutor().getNome()+" Quarto: "+r.getQuarto().getNumQuarto());
+                System.out.println("Pet: "+reserva.getPet().getNome()+ " Tutor: "+reserva.getTutor().getNome()+" Quarto: "+reserva.getQuarto().getNumQuarto());
                 break; //se achar sai do loop.
                 }
             }
         if(encontrou == false){ 
-            System.out.println("A reserva com o ID " + id + " não foi encontrada.");
+            System.out.println("A reserva com o ID: " + id + " não foi encontrada.");
         }         
     }
-    
+   
+    public void removerReserva(UUID id) {
+        Reserva reservaRemovida = null;
+        for (Reserva reserva : getReservas()) {
+            if (reserva.getId().equals(id)) {
+                reservaRemovida = reserva;
+                break;
+            }
+        }
+        if (reservaRemovida != null) {
+            getReservas().remove(reservaRemovida);
+            Quarto quarto = reservaRemovida.getQuarto();
+            quarto.desocuparQuarto(); 
+        } else{ 
+            System.out.println("Essa reserva com ID: "+id+" Não existe no sistema.");
+        }
+    }
+
     public Quarto getQuartoDisponivelC() {
         for (Quarto quarto : getQuartosC()) {
             if (quarto.isOcupado() == false) {
@@ -90,13 +102,6 @@ public class HotelPet {
         } 
     }
 
-    public void removerReserva(int i){ 
-        this.i = i;
-        getReservas().remove(i);
-
-        
-    }
-
     public boolean isFullquartosN(){ 
         if(getQuartosN().size() == 30){ 
             return true;
@@ -118,7 +123,6 @@ public class HotelPet {
         return false;
     }
 
-
     public ArrayList<Quarto> getQuartosN(){ 
         return quartosN;
     }
@@ -129,14 +133,6 @@ public class HotelPet {
 
     public ArrayList<Reserva> getReservas(){ 
         return reservas;
-    }
-
-    public int getI() {
-        return i;
-    }
-
-    public void setI(int i) {
-        this.i = i;
     }
 
 }
