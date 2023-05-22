@@ -1,6 +1,7 @@
 package hotserv.reserva;
 
 import java.util.ArrayList; //Completar várias coisas
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 public class HotelPet {
@@ -10,46 +11,48 @@ public class HotelPet {
     Reserva reserva;
     Quarto quarto;
 
-    public void adicionarReserva(Reserva reserva){ 
-        if(isFull() == true){ 
-            System.out.println("Infelizmente não conseguimos reservar, pois o hotel está cheio.");
+    public void adicionarReserva(Reserva reserva) {
+            if (isFull() == true) {
+                System.out.println("Infelizmente não conseguimos reservar, pois o hotel está cheio.");
+            } else {
+                reserva.getQuarto().ocuparQuarto();
+                getReservas().add(reserva);
+            }
+    }
+    
+    public void listarReserva(UUID id) {
+        try {
+            for (Reserva reserva : getReservas()) {
+                if (reserva.getId().equals(id)) {
+                    System.out.println("Pet: " + reserva.getPet().getNome() + " Tutor: " + reserva.getTutor().getNome() + " Quarto: " + reserva.getQuarto().getNumQuarto());
+                    break; // se achar sai do loop.
+                }
+            }
+        } catch(NoSuchElementException e){ 
+            System.out.println("Não existe o ID: "+id+" no nosso sistema.");
         }
-        else{ 
-            reserva.getQuarto().ocuparQuarto();
-            getReservas().add(reserva);
+        catch (Exception e) {
+            System.out.println("Ocorreu um erro ao listar a reserva: " + e.getMessage());
         }
     }
     
-    public void listarReserva(UUID id){ 
-        boolean encontrou = false;
-        for (Reserva reserva : getReservas()){ 
-            if(reserva.getId().equals(id)){ 
-                encontrou = true;  
-                System.out.println("Pet: "+reserva.getPet().getNome()+ " Tutor: "+reserva.getTutor().getNome()+" Quarto: "+reserva.getQuarto().getNumQuarto());
-                break; //se achar sai do loop.
+    public void removerReserva(UUID id) {
+            Reserva reservaRemovida = null;
+            for (Reserva reserva : getReservas()) {
+                if (reserva.getId().equals(id)) {
+                    reservaRemovida = reserva;
+                    break;
                 }
             }
-        if(encontrou == false){ 
-            System.out.println("A reserva com o ID: " + id + " não foi encontrada.");
-        }         
+            if (reservaRemovida != null) {
+                getReservas().remove(reservaRemovida);
+                quarto = reservaRemovida.getQuarto();
+                quarto.desocuparQuarto();
+            } else {
+                System.out.println("Essa reserva com ID: " + id + " não existe no sistema.");
+            }  
     }
-   
-    public void removerReserva(UUID id) {
-        Reserva reservaRemovida = null;
-        for (Reserva reserva : getReservas()) {
-            if (reserva.getId().equals(id)) {
-                reservaRemovida = reserva;
-                break;
-            }
-        }
-        if (reservaRemovida != null) {
-            getReservas().remove(reservaRemovida);
-            Quarto quarto = reservaRemovida.getQuarto();
-            quarto.desocuparQuarto(); 
-        } else{ 
-            System.out.println("Essa reserva com ID: "+id+" Não existe no sistema.");
-        }
-    }
+    
 
     public Quarto getQuartoDisponivelC() {
         for (Quarto quarto : getQuartosC()) {
@@ -85,21 +88,26 @@ public class HotelPet {
     
     public void adicionarQuarto(Quarto quarto){ 
         if (quarto.getTipoQuarto().equals("normal")) {
-            quarto.setPrecoBase(100); 
             quartosN.add(quarto); // adiciona o quarto à lista de quartos normais
         } else if (quarto.getTipoQuarto().equals("confort")) {
-            quarto.setPrecoBase(150);
             quartosC.add(quarto); // adiciona o quarto à lista de quartos confortáveis
         }
     }
 
     public void calcularPrecoReserva(){  
+      try{
         if (quarto.getTipoQuarto().equals("normal")) {
            reserva.setPreco(150 + (30 * reserva.getTempo())) ;
-        }
+            }
         if (quarto.getTipoQuarto().equals("confort")) { 
            reserva.setPreco(100 + (20 * reserva.getTempo()));
-        } 
+            } 
+        } catch(IllegalArgumentException e){ 
+            System.out.println("O tipo de quarto: "+quarto.getTipoQuarto()+" não existe.");
+        }
+        catch(Exception e){ 
+            System.out.println("Não foi possível calcular o preço da reserva. Fale com o atendente");
+        }
     }
 
     public boolean isFullquartosN(){ 
