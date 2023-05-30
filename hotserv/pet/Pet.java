@@ -7,7 +7,6 @@ public abstract class Pet {
     private int idade;
     private double peso;
     private double tamanho;
-    private String raca;
 
     public double getTamanho() {
         return tamanho;
@@ -43,14 +42,6 @@ public abstract class Pet {
 
     public double getPeso() {
         return peso;
-    }
-
-    public String getRaca() {
-        return raca;
-    }
-
-    public void setRaca(String raca) {
-        this.raca = raca;
     }
 
     public void setPeso(Double peso) {

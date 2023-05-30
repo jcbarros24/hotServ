@@ -12,9 +12,8 @@ public class Reserva {
     private int tempo;
     private double preco;
     private UUID id;
-    HotelPet hotelPet; 
 
-    public Reserva(Pet pet,Quarto quarto,Tutor tutor,int tempo){
+    public Reserva(Pet pet, Quarto quarto, Tutor tutor, int tempo){
         this.id = UUID.randomUUID();
         this.pet = pet;
         this.quarto = quarto;

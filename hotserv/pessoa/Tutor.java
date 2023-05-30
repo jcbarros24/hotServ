@@ -3,9 +3,8 @@ package hotserv.pessoa;
 public class Tutor {
     private String nome;
     private String email;
-    private int cpf;
-    private int telefone;
-
+    private String cpf;
+    private String telefone;
     
     public String getNome() {
         return nome;
@@ -23,19 +22,19 @@ public class Tutor {
         this.email = email;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 }

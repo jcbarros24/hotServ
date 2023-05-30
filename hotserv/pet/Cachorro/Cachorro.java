@@ -1,19 +1,15 @@
 package hotserv.pet.Cachorro;
 
-import hotserv.pet.InterPet;
 import hotserv.pet.Pet;
 
-public class Cachorro extends Pet implements InterPet{
+public class Cachorro extends Pet {
+    private String raca;
 
-    public String fazerBarulho() {
-        return "AU AU";
+    public String getRaca() {
+        return raca;
     }
 
-    public String comer(){
-        return "Ração";
+    public void setRaca(String raca) {
+        this.raca = raca;
     }
-    
-    public String brincar(){
-        return "Jogar bolinha";
-    } 
 }
