@@ -2,9 +2,16 @@ package hotserv.pessoa;
 
 public class Tutor {
     private String nome;
-    private String email;
     private String cpf;
+    private String email;  
     private String telefone;
+
+    public Tutor(String nome,String cpf,String email,String telefone){ 
+        this.nome = nome; 
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+    }
     
     public String getNome() {
         return nome;

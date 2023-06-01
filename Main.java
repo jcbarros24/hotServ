@@ -135,11 +135,12 @@ public class Main {
                     System.out.print("Informe o telefone do tutor: ");
                     String tutorPhone = scanner.nextLine();
                     
-                    Tutor tutor = new Tutor();
-                    tutor.setNome(tutorName);
-                    tutor.setEmail(tutorEmail);
-                    tutor.setCpf(tutorCpf);
-                    tutor.setTelefone(tutorPhone);
+                    Tutor tutor = new TutorBuilder()  // Utilizando o padrão Builder.
+                    .withName(tutorName)
+                    .withCpf(tutorCpf)
+                    .withEmail(tutorEmail)
+                    .withTelefone(tutorPhone)
+                    .build();
                     
                     System.out.print("Informe o tempo de hospedagem (Em dias): ");
                     int stayDuration = scanner.nextInt();
