@@ -1,7 +1,5 @@
 package hotserv.reserva;
-
 import java.util.ArrayList; 
-import java.util.NoSuchElementException;
 import java.util.UUID;
 
 public class HotelPet {
@@ -13,46 +11,47 @@ public class HotelPet {
 
     public void adicionarReserva(Reserva reserva) {
        try {
-        if (isFull() == true) {
-                System.out.println("Infelizmente não conseguimos reservar, pois o hotel está cheio.");
-            } else {
-                reserva.getQuarto().ocuparQuarto();
-                getReservas().add(reserva);
-            }
+        getReservas().add(reserva);
+        reserva.getQuarto().ocuparQuarto();
+
         } catch(Exception e){ 
             System.out.println("Tivemos um erro em adicionar sua reserva. Entre em contato com nosso atendente");
         }
     }
     
     public void listarReserva(UUID id) {
-        try {
-            for (Reserva reserva : getReservas()) {
+        try {   
+            for (int i = 0; i < reservas.size(); i++) {
+                reserva = getReservas().get(i);
                 if (reserva.getId().equals(id)) {
-                    System.out.println("Pet: " + reserva.getPet().getNome() + " Tutor: " + reserva.getTutor().getNome() + " Quarto: " + reserva.getQuarto().getNumQuarto());
-                    break; // se achar sai do loop.
+                    System.out.println("Reserva encontrada:");
+                    System.out.println("Pet: " + reserva.getPet().getNome() +"  "+ reserva.getPet().getPeso() +"  " +reserva.getPet().getIdade()+ " " + reserva.getPet().getTamanho()+". ");
+                    System.out.println("Tutor: " + reserva.getTutor().getNome() +"  "+ reserva.getTutor().getCpf() +"  " +reserva.getTutor().getEmail()+ " " + reserva.getTutor().getTelefone()+". ");
+                    System.out.println("Num do quarto: "+reserva.getQuarto().getNumQuarto()+". ");
+                    break;
                 }
             }
-        } catch(NoSuchElementException e){ 
-            System.out.println("Não existe o ID: "+id+" no nosso sistema.");
-        }
-        catch (Exception e) {
-            System.out.println("Ocorreu um erro ao listar a reserva. Entre em contato com nosso atendente." + e.getMessage());
+        }catch (Exception e) {
+             System.out.println("Ocorreu um erro ao listar a reserva. Entre em contato com nosso atendente." + e.getMessage());
         }
     }
     
     public void removerReserva(UUID id) {
         try{
             Reserva reservaRemovida = null;
-            for (Reserva reserva : getReservas()) {
+            for (int i = 0; i < reservas.size(); i++) {
+                reserva = getReservas().get(i);
                 if (reserva.getId().equals(id)) {
                     reservaRemovida = reserva;
                     break;
                 }
             }
             if (reservaRemovida != null) {
-                getReservas().remove(reservaRemovida);
                 quarto = reservaRemovida.getQuarto();
                 quarto.desocuparQuarto();
+                getReservas().remove(reservaRemovida);
+                System.out.println("Reserva removida com sucesso!");
+                         
             } else {
                 System.out.println("Essa reserva com ID: " + id + " não existe no sistema.");
             }  
@@ -62,7 +61,8 @@ public class HotelPet {
     }
     
     public Quarto getQuartoDisponivelC() {
-        for (Quarto quarto : getQuartosC()) {
+        for (int i = 0; i < getQuartosC().size(); i++) {
+            quarto = getQuartosC().get(i);
             if (quarto.isOcupado() == false) {
                 return quarto;
             }
@@ -71,7 +71,8 @@ public class HotelPet {
     }
 
     public Quarto getQuartoDisponivelN() {
-        for (Quarto quarto : getQuartosN()) {
+        for (int i = 0; i < getQuartosN().size(); i++) {
+            quarto = getQuartosN().get(i);
             if (quarto.isOcupado() == false) {
                 return quarto;
             }
@@ -79,17 +80,18 @@ public class HotelPet {
         return null; // se não houver quarto disponível, retorna null
     }
 
+
     public void listarQuartosDisponiveis(){ 
-        if(getQuartoDisponivelC() == null && getQuartoDisponivelN() == null){ 
+        if(isFullquartosC() == true && isFullquartosN() == true){ 
             System.out.println("Infelizmente não temos quartos disponíveis");
             System.out.println("Entre em contato no e-mail do nosso chefe para mais informações sobre o hotel: ");
             System.out.println("RafaelRoque@unicap.br");
         }
-        else if(getQuartoDisponivelC() == null && getQuartoDisponivelN() != null){ 
+        else if(isFullquartosC()== true && isFullquartosN() == false){ 
             System.out.println("Só possuímos quartos Normais ");
             System.out.println("Se quiser reserva-lo, crie sua reserva na opção 1 do menu.");
         }
-        else if(getQuartoDisponivelC() != null && getQuartoDisponivelN() == null){ 
+        else if(isFullquartosC()== false && isFullquartosN() == true){ 
             System.out.println("Só possuímos quartos Confort ");
             System.out.println("Se quiser reserva-lo, crie sua reserva na opção 1 do menu.");
         }else { 
@@ -106,21 +108,51 @@ public class HotelPet {
         }
     }
 
-    public void calcularPrecoReserva(){  
-      try{
-        if (quarto.getTipoQuarto().equalsIgnoreCase("Confort")) {
-           reserva.setPreco(150 + (30 * reserva.getTempo())) ;
+    public double calcularPrecoReserva(UUID id) {
+        double preco = 0;
+        try { 
+            for (int i = 0; i < getQuartosN().size(); i++) {
+                reserva = getReservas().get(i);
+                if (reserva.getId().equals(id)) { 
+                    quarto = reserva.getQuarto();
+                    if (quarto.getTipoQuarto().equalsIgnoreCase("Confort")) {
+                    quarto.setPrecoBase(150);
+                    preco = quarto.getPrecoBase() + (30 * reserva.getTempo());
+                    break;
+                } else if (quarto.getTipoQuarto().equalsIgnoreCase("Normal")) {
+                    quarto.setPrecoBase(100);
+                    preco = quarto.getPrecoBase() + (20 * reserva.getTempo());
+                    break;
+                } else {
+                    throw new IllegalArgumentException("O tipo de quarto: " + quarto.getTipoQuarto() + " não existe.");
+                }
+                }else{
+                    System.out.println("Reserva não existente.");
+                }   
             }
-        if (quarto.getTipoQuarto().equalsIgnoreCase("Normal")) { 
-           reserva.setPreco(100 + (20 * reserva.getTempo()));
-            } 
-        } catch(IllegalArgumentException e){ 
-            System.out.println("O tipo de quarto: "+quarto.getTipoQuarto()+" não existe.");
-        }
-        catch(Exception e){ 
+            
+        } catch (IllegalArgumentException e1) {
+            System.out.println(e1.getMessage());
+        } catch (Exception e) {
             System.out.println("Não foi possível calcular o preço da reserva. Fale com o atendente");
         }
+        return preco;
     }
+    
+
+    public boolean isEmptyN(){ 
+        if(getQuartosN().size()== 0){
+            return true;
+        }
+        return false;
+    } 
+
+    public boolean isEmptyC(){ 
+        if(getQuartosC().size() == 0){ 
+            return true;
+        }
+        return false;
+    } 
 
     public boolean isFullquartosN(){ 
         if(getQuartosN().size() == 30){ 

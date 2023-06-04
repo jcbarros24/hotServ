@@ -2,7 +2,7 @@ package hotserv.reserva;
 
 public class Quarto {
     
-    private int numQuarto = -1;
+    private int numQuarto = 0;
     private String tipoQuarto;
     private double precoBase;
     private boolean ocupado;
@@ -11,7 +11,7 @@ public class Quarto {
     public Quarto(String tipoQuarto){ 
         this.tipoQuarto = tipoQuarto;
         this.ocupado = false; // inicialmente o quarto está livre
-        numQuarto++; 
+        this.numQuarto = 0;
       // if(reserva.isFull() == false){ } // adicionar isso no método main.
     }
     
