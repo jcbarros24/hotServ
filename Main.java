@@ -153,7 +153,11 @@ public class Main {
                     .withEmail(tutorEmail)
                     .withTelefone(tutorPhone)
                     .build();
+<<<<<<< HEAD
                          
+=======
+                    
+>>>>>>> 42fd37b36e17e5ddde5c0cea93b42beea12fae04
                     System.out.print("Informe o tempo de hospedagem (Em dias): ");
                     int stayDuration = scanner.nextInt();
                     

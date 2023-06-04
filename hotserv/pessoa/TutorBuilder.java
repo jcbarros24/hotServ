@@ -33,4 +33,3 @@ public class TutorBuilder {
         return new Tutor(nome, cpf, email, telefone);
     }
 }
-
