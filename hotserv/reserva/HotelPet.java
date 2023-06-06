@@ -3,6 +3,18 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class HotelPet {
+    private static HotelPet instance;
+
+    private HotelPet() {
+    }
+
+    public static HotelPet getInstance() {
+        if (instance == null) {
+            instance = new HotelPet();
+        }
+        return instance;
+    }
+    
     ArrayList<Quarto> quartosN = new ArrayList<Quarto>();
     ArrayList<Reserva> reservas = new ArrayList<Reserva>();
     ArrayList<Quarto> quartosC = new ArrayList<Quarto>();
