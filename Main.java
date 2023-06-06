@@ -8,7 +8,7 @@ import hotserv.reserva.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        HotelPet hotel = new HotelPet();
+        HotelPet hotel = HotelPet.getInstance();
         int option = 0;
         int i = 0;
         Quarto qC = null;
