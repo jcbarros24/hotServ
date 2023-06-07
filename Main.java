@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.UUID;
 import hotserv.pet.*;
+import hotserv.pet.Cachorro.Cachorro;
 import hotserv.pet.Cachorro.CachorroFactory;
 import hotserv.pessoa.*;
 import hotserv.reserva.*;
@@ -123,10 +124,13 @@ public class Main {
                     pet = gato;
                          
                 } else {
+                    Cachorro cachorro;
                     System.out.print("Informe a raça do cachorro: ");
                     String dogBreed = scanner.nextLine();
                     CachorroFactory cachorroFactory = new CachorroFactory();
-                    pet = cachorroFactory.criarPet(dogBreed); 
+                    cachorro = cachorroFactory.criarPet(dogBreed); 
+                    cachorro.setRaca(dogBreed);
+                    pet = cachorro;
                 }
                 pet.setNome(petName);
                 pet.setIdade(petAge);
