@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.UUID;
 import hotserv.pet.*;
-import hotserv.pet.Cachorro.Cachorro;
+import hotserv.pet.Cachorro.CachorroFactory;
 import hotserv.pessoa.*;
 import hotserv.reserva.*;
 
@@ -123,12 +123,11 @@ public class Main {
                     pet = gato;
                          
                 } else {
-                    Cachorro cachorro = new Cachorro();
                     System.out.print("Informe a raça do cachorro: ");
                     String dogBreed = scanner.nextLine();
-                    cachorro.setRaca(dogBreed);
-                    pet = cachorro;
-                } 
+                    CachorroFactory cachorroFactory = new CachorroFactory();
+                    pet = cachorroFactory.criarPet(dogBreed); 
+                }
                 pet.setNome(petName);
                 pet.setIdade(petAge);
                 pet.setPeso(petWeight);
@@ -208,8 +207,6 @@ public class Main {
             case 5:
                 System.out.println("Encerrando o programa...");
                 break;
-      
-            case 6: 
                   
             default:
                 System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
