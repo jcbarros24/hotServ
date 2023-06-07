@@ -37,8 +37,8 @@ public class HotelPet {
                 reserva = getReservas().get(i);
                 if (reserva.getId().equals(id)) {
                     System.out.println("Reserva encontrada:");
-                    System.out.println("Pet: " + reserva.getPet().getNome() +"  "+ reserva.getPet().getPeso() +"  " +reserva.getPet().getIdade()+ " " + reserva.getPet().getTamanho()+". ");
-                    System.out.println("Tutor: " + reserva.getTutor().getNome() +"  "+ reserva.getTutor().getCpf() +"  " +reserva.getTutor().getEmail()+ " " + reserva.getTutor().getTelefone()+". ");
+                    System.out.println("Pet: " + reserva.getPet().getNome() +" Peso:  "+ reserva.getPet().getPeso() +" Idade:  " +reserva.getPet().getIdade()+ " Tamanho:  " + reserva.getPet().getTamanho()+". ");
+                    System.out.println("Tutor: " + reserva.getTutor().getNome() +" CPF:  "+ reserva.getTutor().getCpf() +" Email:  " +reserva.getTutor().getEmail()+ " Telefone:  " + reserva.getTutor().getTelefone()+". ");
                     System.out.println("Num do quarto: "+reserva.getQuarto().getNumQuarto()+". ");
                     break;
                 }
