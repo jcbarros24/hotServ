@@ -25,7 +25,7 @@ public class CachorroFactory {
                 return new CachorroG(); //G
             } 
             else {
-                throw new IllegalArgumentException("Tipo de pet inválido: " + tipo);
+                return new Cachorro();
             }
         }
     }
